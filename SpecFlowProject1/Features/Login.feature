@@ -1,5 +1,5 @@
 ﻿Feature: Login
-As a user, I would like to be able to ensure that I can log into Facebook only when I provide the correct credentials
+	As a user, I would like to be able to ensure that I can log into Facebook only when I provide the correct credentials
 
 @mytag
 Scenario: Susie logs in with blank username and password

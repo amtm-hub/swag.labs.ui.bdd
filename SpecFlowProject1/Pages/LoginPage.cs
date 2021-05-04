@@ -2,6 +2,8 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SpecFlowProject1.Pages
 {
@@ -36,5 +38,23 @@ namespace SpecFlowProject1.Pages
 
         private IWebElement PasswordErrorMessageEl => _wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@class='clearfix _5466 _44mg']/div[@class='_9ay7']")));
         public string PasswordErrorMessage => PasswordErrorMessageEl.Text;
+
+        private IWebElement SelectorEl => _driver.FindElement(By.XPath("//div[@id='pageFooter']//a[@role='button']"));
+        public void ClickLanguageSelector() => SelectorEl.Click();
+
+        private IEnumerable<IWebElement> LanguageEl => _driver.FindElements(By.XPath("//div[@id='pageFooter']//li"));
+        public void SelectLanguageFromFooter(string language)
+        {
+            LanguageEl.Single(x => x.Text.Contains(language)).Click();
+        }
+
+        private IWebElement LoginButtonEl => _wait.Until(ExpectedConditions.ElementExists(By.Name("login")));
+        public string LoginText => LoginButtonEl.Text;
+
+        private IWebElement ForgotPasswordLinkEl => _wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@class='_6ltj']/a")));
+        public string ForgotPasswordText => ForgotPasswordLinkEl.Text;
+
+        private IWebElement CreateAccountLinkEl => _wait.Until(ExpectedConditions.ElementExists(By.XPath("//div[@class='_6ltg']/a")));
+        public string CreateAccountText => CreateAccountLinkEl.Text;
     }
 }
