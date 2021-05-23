@@ -24,15 +24,24 @@ namespace SpecFlowProject1.Steps
             _selectYourLanguagePage = new SelectYourLanguagePage(driver);
         }
 
-        [Given(@"Susie is on login screen")]
-        public void GivenSusieIsOnLoginScreen()
+        [Given(@"Susie is on login screen for ""(.+)""")]
+        public void GivenSusieIsOnLoginScreenFor(string page)
         {
-            _loginPage.NavigateToPage();
+            _loginPage.NavigateToPage(page);
         }
 
         [When(@"she logs in with blank username and password")]
         public void WhenSheLogsInWithBlankUsernameAndPassword()
         {
+            _loginPage.ClickLogin();
+        }
+
+        [When(@"she logs in with blank password")]
+        public void WhenSheLogsInWithBlankPassword(Table table)
+        {
+            var username = table.Rows[0][0];
+
+            _loginPage.SetUsername(username);
             _loginPage.ClickLogin();
         }
 
@@ -62,13 +71,13 @@ namespace SpecFlowProject1.Steps
         [Then(@"the email error message ""(.*)"" will be displayed")]
         public void ThenTheEmailErrorMessageWillBeDisplayed(string message)
         {
-            _loginPage.EmailErrorMessage.Should().Be(message);
+            _loginPage.ErrorMessage.Should().Be(message);
         }
 
         [Then(@"the password error message ""(.*)"" will be displayed")]
         public void ThenThePasswordErrorMessageWillBeDisplayed(string message)
         {
-            _loginPage.PasswordErrorMessage.Should().Be(message);
+            _loginPage.ErrorMessage.Should().Be(message);
         }
 
         [Then(@"the homepage is displayed")]

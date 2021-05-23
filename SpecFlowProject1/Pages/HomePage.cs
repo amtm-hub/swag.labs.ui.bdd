@@ -16,7 +16,7 @@ namespace SpecFlowProject1.Pages
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
         }
 
-        private IWebElement HomeLinkEl => _wait.Until(ExpectedConditions.ElementExists(By.XPath("//a[@aria-label='Home']")));
+        private IWebElement HomeLinkEl => _wait.Until(ExpectedConditions.ElementExists(By.Id("inventory_container")));
         public bool IsHomeLinkDisplayed() => HomeLinkEl.Displayed;
     }
 }

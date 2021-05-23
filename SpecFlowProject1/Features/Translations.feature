@@ -1,9 +1,9 @@
 ﻿Feature: Translations
-	As a user, I would like to be able to switch to a different language when going to the site
+	As a user, I would like to be able to switch to a different language when going to the Facebook site
 
 @mytag
 Scenario: Susie views the available languages
-	Given Susie is on login screen
+	Given Susie is on login screen for "Facebook"
 	When she views the list of available languages
 	Then the Select Your Language modal is displayed with a list of languages
 		"""
@@ -127,7 +127,7 @@ Scenario: Susie views the available languages
 
 @mytag
 Scenario: Susie switches to a different language
-	Given Susie is on login screen
+	Given Susie is on login screen for "Facebook"
 	When she switches to "Filipino" language
 	Then the language on the login screen is translated
 		|                 | values                    |

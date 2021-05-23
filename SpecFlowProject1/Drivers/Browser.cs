@@ -7,7 +7,9 @@ namespace SpecFlowProject1.Drivers
     {
         public static IWebDriver GetDriver()
         {
-            return new ChromeDriver();
+            var options = new ChromeOptions();
+            options.AddArgument("--start-maximized");
+            return new ChromeDriver(options);
         }
     }
 }
