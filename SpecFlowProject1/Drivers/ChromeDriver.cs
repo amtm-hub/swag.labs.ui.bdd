@@ -3,13 +3,13 @@ using OpenQA.Selenium.Chrome;
 
 namespace SpecFlowProject1.Drivers
 {
-    public static class Browser
+    public static class ChromeDriver
     {
         public static IWebDriver GetDriver()
         {
             var options = new ChromeOptions();
             options.AddArgument("--start-maximized");
-            return new ChromeDriver(options);
+            return new OpenQA.Selenium.Chrome.ChromeDriver(options);
         }
     }
 }

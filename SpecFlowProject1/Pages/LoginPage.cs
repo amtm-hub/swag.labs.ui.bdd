@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 
 namespace SpecFlowProject1.Pages
@@ -18,11 +19,11 @@ namespace SpecFlowProject1.Pages
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
         }
 
-        public void NavigateToPage(string page)
+        public void NavigateToPage(string page="swaglabs")
         {
             var url = page.ToLowerInvariant() == "swaglabs"
-                ? "https://www.saucedemo.com/"
-                : "https://www.facebook.com/";
+                ? ConfigurationManager.AppSettings["swaglabsurl"]
+                : ConfigurationManager.AppSettings["fburl"];
             
             _driver.Navigate().GoToUrl(url);
 

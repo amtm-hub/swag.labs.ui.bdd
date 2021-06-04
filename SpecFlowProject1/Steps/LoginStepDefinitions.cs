@@ -10,15 +10,12 @@ namespace SpecFlowProject1.Steps
     [Binding]
     public sealed class LoginStepDefinitions
     {
-        private readonly ScenarioContext _scenarioContext;
-        
         private readonly LoginPage _loginPage;
         private readonly HomePage _homePage;
         private readonly SelectYourLanguagePage _selectYourLanguagePage;
 
-        public LoginStepDefinitions(IWebDriver driver, ScenarioContext scenarioContext)
+        public LoginStepDefinitions(IWebDriver driver)
         {
-            _scenarioContext = scenarioContext;
             _loginPage = new LoginPage(driver);
             _homePage = new HomePage(driver);
             _selectYourLanguagePage = new SelectYourLanguagePage(driver);
@@ -62,20 +59,14 @@ namespace SpecFlowProject1.Steps
             _loginPage.ClickLanguageSelector();
         }
 
-        [When(@"she switches to ""(.*)"" language")]
+        [When(@"she switches to ""(.+)"" language")]
         public void WhenSheSwitchesToLanguage(string language)
         {
             _loginPage.SelectLanguageFromFooter(language);
         }
 
-        [Then(@"the email error message ""(.*)"" will be displayed")]
-        public void ThenTheEmailErrorMessageWillBeDisplayed(string message)
-        {
-            _loginPage.ErrorMessage.Should().Be(message);
-        }
-
-        [Then(@"the password error message ""(.*)"" will be displayed")]
-        public void ThenThePasswordErrorMessageWillBeDisplayed(string message)
+        [Then(@"the error message ""(.+)"" will be displayed")]
+        public void ThenTheErrorMessageWillBeDisplayed(string message)
         {
             _loginPage.ErrorMessage.Should().Be(message);
         }

@@ -1,7 +1,7 @@
-﻿Feature: Translations
+﻿@translations
+Feature: Translations
 	As a user, I would like to be able to switch to a different language when going to the Facebook site
 
-@mytag
 Scenario: Susie views the available languages
 	Given Susie is on login screen for "Facebook"
 	When she views the list of available languages
@@ -125,7 +125,6 @@ Scenario: Susie views the available languages
 		한국어
 		"""
 
-@mytag
 Scenario: Susie switches to a different language
 	Given Susie is on login screen for "Facebook"
 	When she switches to "Filipino" language

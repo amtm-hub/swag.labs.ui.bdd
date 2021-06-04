@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
+using System.Collections.Generic;
 
 namespace SpecFlowProject1.Pages
 {
@@ -18,5 +19,43 @@ namespace SpecFlowProject1.Pages
 
         private IWebElement HomeLinkEl => _wait.Until(ExpectedConditions.ElementExists(By.Id("inventory_container")));
         public bool IsHomeLinkDisplayed() => HomeLinkEl.Displayed;
+
+        public IEnumerable<ProductsPage> Products
+        {
+            get
+            {
+                var products = _driver.FindElements(By.XPath("//div[@class='inventory_item']"));
+                var list = new List<ProductsPage>();
+                foreach (var product in products)
+                {
+                    list.Add(new ProductsPage(_driver, product));
+                }
+                return list;
+            }
+        }
+    }
+
+    public sealed class ProductsPage
+    {
+        private IWebDriver _driver;
+        private IWebElement _el;
+
+        public ProductsPage(IWebDriver driver, IWebElement el)
+        {
+            _driver = driver;
+            _el = el;
+        }
+
+        private IWebElement ItemImageEl => _el.FindElement(By.XPath("//div[@class='inventory_item_img']/a/img"));
+        public string ItemImageSource => ItemImageEl.GetAttribute("src");
+
+        private IWebElement ItemDescriptionEl => _el.FindElement(By.XPath("//div[@class='inventory_item_description']"));
+        public string ItemDescription => ItemDescriptionEl.Text;
+
+        private IWebElement ItemPriceBarEl => _el.FindElement(By.XPath("//div[@class='pricebar']"));
+        public string ItemPrice => ItemPriceBarEl.Text;
+
+        private IWebElement AddToCartButtonEl => _el.FindElement(By.XPath("//div[@class='pricebar']/button"));
+        public bool IsAddToCartEnabled => AddToCartButtonEl.Enabled;
     }
 }
