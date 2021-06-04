@@ -20,27 +20,27 @@ namespace SpecFlowProject1.Pages
         private IWebElement HomeLinkEl => _wait.Until(ExpectedConditions.ElementExists(By.Id("inventory_container")));
         public bool IsHomeLinkDisplayed() => HomeLinkEl.Displayed;
 
-        public IEnumerable<ProductsPage> Products
+        public IEnumerable<ProductPage> Products
         {
             get
             {
                 var products = _driver.FindElements(By.XPath("//div[@class='inventory_item']"));
-                var list = new List<ProductsPage>();
+                var list = new List<ProductPage>();
                 foreach (var product in products)
                 {
-                    list.Add(new ProductsPage(_driver, product));
+                    list.Add(new ProductPage(_driver, product));
                 }
                 return list;
             }
         }
     }
 
-    public sealed class ProductsPage
+    public sealed class ProductPage
     {
         private IWebDriver _driver;
         private IWebElement _el;
 
-        public ProductsPage(IWebDriver driver, IWebElement el)
+        public ProductPage(IWebDriver driver, IWebElement el)
         {
             _driver = driver;
             _el = el;

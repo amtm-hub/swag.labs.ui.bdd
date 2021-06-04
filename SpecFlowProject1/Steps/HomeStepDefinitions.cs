@@ -15,8 +15,8 @@ namespace SpecFlowProject1.Steps
         private readonly SharedContext _sharedContext;
         private readonly HomePage _page;
         private readonly LoginPage _loginPage;
-        private IEnumerable<ProductsPage> _products;
-        
+        private IEnumerable<ProductPage> _products;
+
         public HomeStepDefinitions(IWebDriver driver, SharedContext sharedContext)
         {
             _driver = driver;
