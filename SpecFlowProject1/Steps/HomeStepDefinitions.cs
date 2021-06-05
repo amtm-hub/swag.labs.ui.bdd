@@ -25,10 +25,11 @@ namespace SpecFlowProject1.Steps
             _loginPage = new LoginPage(driver);
         }
 
-        [Given(@"Susie is on homepage for SwagLabs")]
-        public void GivenSusieIsOnHomepageFor()
+        [Given(@"Susie is on homepage")]
+        public void GivenSusieIsOnHomepage()
         {
-            _loginPage.NavigateToPage();
+            NavigateToPage(_sharedContext.BaseUrl);
+            _loginPage.IsLoginLogoDisplayed.Should().BeTrue();
 
             _loginPage.SetUsername(_sharedContext.SusieUsername);
             _loginPage.SetPassword(_sharedContext.SusiePassword);
@@ -56,6 +57,11 @@ namespace SpecFlowProject1.Steps
                     product.IsAddToCartEnabled.Should().BeTrue();
                 }
             }
+        }
+
+        private void NavigateToPage(string url)
+        {
+            _driver.Navigate().GoToUrl(url);
         }
     }
 }

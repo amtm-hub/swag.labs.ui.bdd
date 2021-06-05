@@ -4,13 +4,13 @@ Feature: ViewProducts
 	And be able to sort the products according to different sorting options
 
 Scenario: Susie views information of products on grid
-	Given Susie is on homepage for SwagLabs
+	Given Susie is on homepage
 	When she views information of products on grid
 	Then item name, item description and item price are displayed with Add to Cart option
 
 @todo
 Scenario: Susie clicks on a product on grid
-	Given Susie is on homepage for SwagLabs
+	Given Susie is on homepage
 	When she clicks on a product on grid
 	Then the following details are displayed
 		| details            |
