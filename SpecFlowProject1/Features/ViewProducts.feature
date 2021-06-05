@@ -6,18 +6,12 @@ Feature: ViewProducts
 Scenario: Susie views information of products on grid
 	Given Susie is on homepage
 	When she views information of products on grid
-	Then item name, item description and item price are displayed with Add to Cart option
+	Then the grid displays item image, item name, item description and item price with Add to Cart option
 
-@todo
 Scenario: Susie clicks on a product on grid
 	Given Susie is on homepage
 	When she clicks on a product on grid
-	Then the following details are displayed
-		| details            |
-		| item name          |
-		| item description   |
-		| item price         |
-		| add to cart button |
+	Then the page displays item image, item name, item description and item price with Add to Cart option
 
 @todo
 Scenario: Susie sorts product display by Name A to Z

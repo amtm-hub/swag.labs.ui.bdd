@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using SpecFlowProject1.Context;
 using SpecFlowProject1.Pages;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowProject1.Steps
@@ -16,6 +17,7 @@ namespace SpecFlowProject1.Steps
         private readonly HomePage _page;
         private readonly LoginPage _loginPage;
         private IEnumerable<ProductPage> _products;
+        private readonly InventoryPage _inventoryPage;
 
         public HomeStepDefinitions(IWebDriver driver, SharedContext sharedContext)
         {
@@ -23,6 +25,7 @@ namespace SpecFlowProject1.Steps
             _sharedContext = sharedContext;
             _page = new HomePage(driver);
             _loginPage = new LoginPage(driver);
+            _inventoryPage = new InventoryPage(driver);
         }
 
         [Given(@"Susie is on homepage")]
@@ -44,8 +47,14 @@ namespace SpecFlowProject1.Steps
             _products = _page.Products;
         }
 
-        [Then(@"item name, item description and item price are displayed with Add to Cart option")]
-        public void ThenItemNameItemDescriptionAndItemPriceAreDisplayedWithAddToCartOption()
+        [When(@"she clicks on a product on grid")]
+        public void WhenSheClicksOnAProductOnGrid()
+        {
+            _page.Products.First().Click();
+        }
+
+        [Then(@"the grid displays item image, item name, item description and item price with Add to Cart option")]
+        public void ThenTheGridDisplaysItemImageItemNameItemDescriptionAndItemPriceWithAddToCartOption()
         {
             foreach (var product in _products)
             {
@@ -56,6 +65,19 @@ namespace SpecFlowProject1.Steps
                     product.ItemPrice.Should().Contain("$");
                     product.IsAddToCartEnabled.Should().BeTrue();
                 }
+            }
+        }
+
+        [Then(@"the page displays item image, item name, item description and item price with Add to Cart option")]
+        public void ThenThePageDisplaysItemImageItemNameItemDescriptionAndItemPriceWithAddToCartOption()
+        {
+            using (new AssertionScope())
+            {
+                _inventoryPage.ImageSource.Should().Contain(".jpg");
+                _inventoryPage.Name.Should().NotBeNullOrEmpty();
+                _inventoryPage.Description.Should().NotBeNullOrEmpty();
+                _inventoryPage.Price.Should().Contain("$");
+                _inventoryPage.IsAddToCartEnabled.Should().BeTrue();
             }
         }
 

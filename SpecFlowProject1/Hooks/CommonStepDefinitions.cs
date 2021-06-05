@@ -13,12 +13,12 @@ namespace SpecFlowProject1.Hooks
         private readonly IObjectContainer _objectContainer;
         private IWebDriver _driver;
         private SharedContext _sharedContext;
-        
+
         public CommonStepDefinitions(IObjectContainer objectContainer)
         {
             _objectContainer = objectContainer;
         }
-        
+
         [BeforeScenario()]
         public void OpenBrowser()
         {

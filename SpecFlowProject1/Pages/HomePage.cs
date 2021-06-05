@@ -57,5 +57,8 @@ namespace SpecFlowProject1.Pages
 
         private IWebElement AddToCartButtonEl => _el.FindElement(By.XPath("//div[@class='pricebar']/button"));
         public bool IsAddToCartEnabled => AddToCartButtonEl.Enabled;
+
+        private IWebElement ItemLinkEl => _el.FindElement(By.XPath("//div[@class='inventory_item_img']/a"));
+        public void Click() => ItemLinkEl.Click();
     }
 }

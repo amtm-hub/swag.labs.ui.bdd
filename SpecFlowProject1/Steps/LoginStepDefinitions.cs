@@ -13,7 +13,7 @@ namespace SpecFlowProject1.Steps
         private readonly SharedContext _sharedContext;
         private readonly LoginPage _loginPage;
         private readonly HomePage _homePage;
-        
+
         public LoginStepDefinitions(IWebDriver driver, SharedContext sharedContext)
         {
             _driver = driver;
@@ -54,7 +54,7 @@ namespace SpecFlowProject1.Steps
             _loginPage.SetPassword(password);
             _loginPage.ClickLogin();
         }
-        
+
         [Then(@"the error message ""(.+)"" will be displayed")]
         public void ThenTheErrorMessageWillBeDisplayed(string message)
         {
@@ -66,7 +66,7 @@ namespace SpecFlowProject1.Steps
         {
             _homePage.IsHomeLinkDisplayed().Should().Be(true);
         }
-        
+
         private void NavigateToPage(string url)
         {
             _driver.Navigate().GoToUrl(url);

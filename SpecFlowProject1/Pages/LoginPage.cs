@@ -21,7 +21,7 @@ namespace SpecFlowProject1.Pages
 
         private IWebElement UsernameEl => _driver.FindElement(By.Id("user-name"));
         public void SetUsername(string username = null) => UsernameEl.SendKeys(username);
-        
+
         private IWebElement PasswordEl => _driver.FindElement(By.Id("password"));
         public void SetPassword(string password = null) => PasswordEl.SendKeys(password);
 
