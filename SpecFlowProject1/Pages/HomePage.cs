@@ -1,8 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SpecFlowProject1.Pages
 {
@@ -17,7 +17,7 @@ namespace SpecFlowProject1.Pages
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
         }
 
-        private IWebElement HomeLinkEl => _wait.Until(ExpectedConditions.ElementExists(By.Id("inventory_container")));
+        private IWebElement HomeLinkEl => _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("inventory_container")));
         public bool IsHomeLinkDisplayed() => HomeLinkEl.Displayed;
 
         public IEnumerable<ProductPage> Products
@@ -32,6 +32,14 @@ namespace SpecFlowProject1.Pages
                 }
                 return list;
             }
+        }
+
+        private IWebElement SortDropdownEl => _driver.FindElement(By.XPath("//select[@class='product_sort_container']"));
+        public void ClickSort() => SortDropdownEl.Click();
+        public IEnumerable<string> SortOptions()
+        {
+            var dropdown = new SelectElement(SortDropdownEl);
+            return dropdown.Options.Select(x => x.Text);
         }
     }
 

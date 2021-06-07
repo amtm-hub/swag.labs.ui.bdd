@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 using System;
 
 namespace SpecFlowProject1.Pages
@@ -28,7 +27,7 @@ namespace SpecFlowProject1.Pages
         private IWebElement LoginEl => _driver.FindElement(By.Id("login-button"));
         public void ClickLogin() => LoginEl.Click();
 
-        private IWebElement ErrorMessageEl => _wait.Until(ExpectedConditions.ElementExists(By.XPath("//h3[@data-test='error']")));
+        private IWebElement ErrorMessageEl => _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//h3[@data-test='error']")));
         public string ErrorMessage => ErrorMessageEl.Text;
     }
 }

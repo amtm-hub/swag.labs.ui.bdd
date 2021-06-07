@@ -13,30 +13,40 @@ Scenario: Susie clicks on a product on grid
 	When she clicks on a product on grid
 	Then the page displays item image, item name, item description and item price with Add to Cart option
 
+Scenario: Susie views sort options for products
+	Given Susie is on homepage
+	When she clicks on Sort dropdown
+	Then she will see the following options
+		| options             |
+		| Name (A to Z)       |
+		| Name (Z to A)       |
+		| Price (low to high) |
+		| Price (high to low) |
+
 @todo
 Scenario: Susie sorts product display by Name A to Z
-	Given the first number is 50
+	Given Susie is on homepage
 	And the second number is 70
 	When the two numbers are added
 	Then the result should be 120
 
 @todo
 Scenario: Susie sorts product display by Name Z to A
-	Given the first number is 50
+	Given Susie is on homepage
 	And the second number is 70
 	When the two numbers are added
 	Then the result should be 120
 
 @todo
 Scenario: Susie sorts product display by Price Low to High
-	Given the first number is 50
+	Given Susie is on homepage
 	And the second number is 70
 	When the two numbers are added
 	Then the result should be 120
 
 @todo
 Scenario: Susie sorts product display by Price High to Low
-	Given the first number is 50
+	Given Susie is on homepage
 	And the second number is 70
 	When the two numbers are added
 	Then the result should be 120

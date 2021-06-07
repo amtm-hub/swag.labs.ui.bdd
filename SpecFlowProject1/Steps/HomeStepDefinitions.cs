@@ -53,6 +53,12 @@ namespace SpecFlowProject1.Steps
             _page.Products.First().Click();
         }
 
+        [When(@"she clicks on Sort dropdown")]
+        public void WhenSheClicksOnSortDropdown()
+        {
+            _page.ClickSort();
+        }
+
         [Then(@"the grid displays item image, item name, item description and item price with Add to Cart option")]
         public void ThenTheGridDisplaysItemImageItemNameItemDescriptionAndItemPriceWithAddToCartOption()
         {
@@ -79,6 +85,13 @@ namespace SpecFlowProject1.Steps
                 _inventoryPage.Price.Should().Contain("$");
                 _inventoryPage.IsAddToCartEnabled.Should().BeTrue();
             }
+        }
+
+        [Then(@"she will see the following options")]
+        public void ThenSheWillSeeTheFollowingOptions(Table table)
+        {
+            var expValues = table.Rows.Select(value => value["options"]).ToList();
+            _page.SortOptions().Should().BeEquivalentTo(expValues);
         }
 
         private void NavigateToPage(string url)
