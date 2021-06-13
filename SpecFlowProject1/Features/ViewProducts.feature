@@ -23,28 +23,28 @@ Scenario: Susie views sort options for products
 		| Price (low to high) |
 		| Price (high to low) |
 
-@todo
+@todo @ignore
 Scenario: Susie sorts product display by Name A to Z
 	Given Susie is on homepage
 	And the second number is 70
 	When the two numbers are added
 	Then the result should be 120
 
-@todo
+@todo @ignore
 Scenario: Susie sorts product display by Name Z to A
 	Given Susie is on homepage
 	And the second number is 70
 	When the two numbers are added
 	Then the result should be 120
 
-@todo
+@todo @ignore
 Scenario: Susie sorts product display by Price Low to High
 	Given Susie is on homepage
 	And the second number is 70
 	When the two numbers are added
 	Then the result should be 120
 
-@todo
+@todo @ignore
 Scenario: Susie sorts product display by Price High to Low
 	Given Susie is on homepage
 	And the second number is 70
